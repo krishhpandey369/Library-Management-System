@@ -1,92 +1,79 @@
 # Library-Management-System
 This is my very first Library Management System project in Java. It manages books and members of a library. Librarian can add/remove books, add members, see details. Member can view books, borrow, return and pay fine. I used the classes, objects, ArrayList and exception handling to build it.
-# Library Management System
+# Library Management System 📚
 
-This is my Library Management System project which I made in Java using Object Oriented Programming. It is a console based application. I made this project for understanding how different classes work together and how we can manage data using ArrayList and other things.
+Hey guys this is my Library Management System project which I made in Java using OOP concepts. I made this for my college assignment and also for learning how real projects work. It is fully console based menu driven program. No GUI nothing just simple black screen with options 😄
 
-In this system there is two type of user. One is Librarian and other is Member. Librarian can control the books and members. Member can issue book, return book and pay fine if they return late.
+I choose this topic because library system is easy to understand and has many different functions like adding books, issuing books, calculating fine etc. I wanted to practice classes, objects, ArrayList, encapsulation and all those things which we study in class but never use properly.
 
-I tried to make it simple so that anyone can understand the code easily.
+## Why I made this project 🤔
 
-## Why I made this project
+In college we mostly write small programs like factorial, prime number, simple calculator. But I always wanted to make one complete working project where many classes work together. So one day I decided to make Library Management System.
 
-I wanted to practice OOP concepts like class, object, encapsulation, constructor etc. Also I wanted to make one complete working project instead of just small programs. Library system is common project so I decided to make this.
+I searched many projects on internet but most of them were either too complicated or copy paste. So I thought why not make my own from scratch. I spent many days on this project. Sometimes code was not working, sometimes logic was wrong, but finally it is working good 🔥
 
-In this project I used:
-- ArrayList for storing books and members
-- PriorityQueue for giving unique ID and reusing deleted ID
-- ScheduledExecutorService for calculating time and fine
-- BufferedReader and Scanner for taking input
-- Simple validation for name and phone number
+## What this project can do
 
-## Features of the Project
+This system has two type of users:
 
-### Things Librarian can do
+### 1. Librarian 👨‍💼
 
-1. Register a new Member  
-   Librarian enter name, age and phone number of member. System check if phone number is already registered or not. If not then new member is added and unique Member ID is given.
+Librarian is like admin of library. He can do many things:
 
-2. Remove a Member  
-   Librarian enter Member ID. If member exist then he is removed. All books which that member issued are also returned back to library automatically.
+- Register new members by taking name, age and phone number
+- Remove any member by entering their ID
+- Add new books with title, author name and number of copies
+- Remove books using Book ID
+- See complete list of all members with their borrowed books and fine amount
+- See all books present in library with available copies
 
-3. Add a Book  
-   Librarian enter book title, author name and how many copies. System create that many book entries and give unique Book ID to each.
+When librarian register new member, system first check if that phone number is already registered or not. If phone number already exist then it will show duplicate registration message. This way same person cannot register two times.
 
-4. Remove a Book  
-   Librarian enter Book ID. If book exist then it is removed from library. If any member has that book then it is also removed from his borrowed list.
+When any member is removed, all books which that member had issued are automatically returned back to library. issuedCopies of those books get decreased.
 
-5. View all Members  
-   This option show all registered members. For every member it show name, age, phone, books he borrowed and total fine he has to pay.
+### 2. Member 👨‍🎓
 
-6. View all Books  
-   This option show all books present in library with Book ID, title, author and how many copies are still available for issuing.
+Members are normal users who come to library for taking books.
 
-### Things Member can do
+First they need to login using their registered name and phone number. If both match then they can enter member menu.
 
-1. List Available Books  
-   Member can see all books which have at least one copy free for issuing.
+After login member can:
 
-2. List My Books  
-   Member can see all books which he currently borrowed.
+- See list of all available books (only those which have free copies)
+- See books which they currently borrowed
+- Issue new book (maximum 2 books allowed)
+- Return any book which they issued
+- Pay pending fine
 
-3. Issue Book  
-   Member can issue a book by entering Book ID.  
-   But there is some condition:  
-   - Member should not have any pending fine  
-   - Member should not already have 2 books  
-   - Book should have available copies  
+## Important Rules I put in system ⚠️
 
-4. Return Book  
-   Member enter Book ID of book he want to return.  
-   If book is returned on time then no fine.  
-   If returned late then fine is calculated and added to his balance.
+I added some rules so that system look realistic:
 
-5. Pay Fine  
-   Member can see total fine and pay the balance amount.
+1. One member can issue maximum 2 books only at one time. If they already have 2 books then system will not allow more.
 
-## Important Rules I Put in System
+2. Every book has time limit of 10 seconds. I made 1 second = 1 day so that testing become easy. In real life it will be 10 days but for testing 10 second is perfect.
 
-- Maximum 2 books can be issued to one member at one time.
-- Every book has time limit of 10 seconds. I made 1 second equal to 1 day so that testing become easy.
-- After 10 second fine start. Fine is Rs 3 for every extra second.
-- If member has any balance fine then he cannot issue new book until he pay the fine.
-- Same phone number cannot be used for two different members.
-- Name should contain only alphabets and spaces. No numbers or special character allowed.
-- Phone number must be exactly 10 digits and only numbers.
+3. After 10 second fine start. Fine is Rs 3 for every extra second. So if someone return book after 15 second then fine will be (15-10)*3 = Rs 15.
 
-## Classes I Created
+4. If member has any pending fine then he cannot issue new book until he pay the fine. This is very important rule.
 
-I put all classes in one file so that it is easy to compile and run.
+5. Phone number must be exactly 10 digits and only numbers. Name should have only alphabets and spaces. No number or special character allowed in name.
+
+6. Same phone number cannot be used for two different members.
+
+## Classes I created in this project 🛠️
+
+I put all classes in one single file so that compiling become easy. File name is LibraryPortal.java
 
 ### 1. Library Class
-This class has two private ArrayList.  
-One ArrayList store all Book objects.  
-Second ArrayList store all Member objects.  
-It has two simple methods to return these lists.
+This is main storage class. It has two private ArrayList:
+- One for storing all Book objects
+- One for storing all Member objects
+
+Other classes take data from this class only.
 
 ### 2. Librarian Class
-This is most important class for admin work.  
-It has methods for:
+This class has all functions which librarian can perform:
 - addBook()
 - removeBook()
 - registerMember()
@@ -94,64 +81,63 @@ It has methods for:
 - listBooks()
 - listMembers()
 
-I used two PriorityQueue for managing IDs.  
-When any book or member is deleted, its ID is put back in PriorityQueue so that ID can be reused later. This way ID number does not become very big.
+I used two PriorityQueue here for managing unique IDs. When any book or member is deleted, their ID is added back in PriorityQueue. Next time when new book or member is added, system first check PriorityQueue. If any old ID is available then it reuse that ID. This way ID numbers stay small and clean.
 
 ### 3. Book Class
-This class store information of one book:
+Simple class for storing book details:
 - title
 - author
 - totalCopies
 - issuedCopies
-- unique ID
+- unique Book ID
 
-Constructor take title, author, total copies and ID.  
-issuedCopies start from 0.
+When new book is created issuedCopies start from 0.
 
 ### 4. IssuedBook Class
-Whenever member issue a book, one IssuedBook object is created.  
+This is special class. Whenever member issue any book, one IssuedBook object is created.
+
 This class keep:
-- reference of Book
-- timeElapsed (how many second passed)
+- reference of original Book
+- timeElapsed (how many second passed after issuing)
 - timeMax (fixed 10 second)
 - fine amount
 
-I used ScheduledExecutorService here. It run a task every 1 second.  
-Every second timeElapsed increase by 1.  
-When timeElapsed become more than 10, fine start calculating as (timeElapsed - 10) * 3.
+I used ScheduledExecutorService in this class. It start a timer which run every 1 second. Every second timeElapsed increase by 1. When timeElapsed become more than 10, fine start calculating automatically.
 
 ### 5. Member Class
-This class store:
+This class store everything about one member:
 - name
 - age
 - phone number
 - unique Member ID
-- list of IssuedBook
+- list of IssuedBook (books he borrowed)
 - balance (pending fine amount)
 
-It has many methods:
+It has many methods like:
 - issueBook()
 - returnBook()
 - listBorrowedBooks()
 - listAvailableBooks()
 - calFine()
 - payFine()
-- some compare methods for name, phone and ID
+- compare methods for name, phone and ID
 
 ### 6. Main Class
-This is starting point of program.  
-It show main menu and handle all user input.  
-It also has two helper methods:
+This is starting point of whole program. It show main menu and handle all user inputs.
+
+It has two big methods:
+- enterLibrarian() → show librarian menu
+- enterMember() → show member menu
+
+Also has two helper methods:
 - isAlpha() → check if name has only letters and space
-- isPhone() → check if phone is 10 digit number
+- isPhone() → check if phone number is valid 10 digit
 
-There is two big methods:
-- enterLibrarian() → show librarian menu and call related functions
-- enterMember() → show member menu and call related functions
+## How to run this project 💻
 
-## How to Compile and Run
+Very simple steps:
 
-1. Make sure JDK is installed on your system (Java 8 or higher is ok).
-2. Copy the code and save it as Main.java
-3. Open command prompt or terminal in same folder.
-4. Type this command to compile:
+1. First make sure you have JDK installed (Java 8 or above)
+2. Copy the code and save it as LibraryPortal.java
+3. Open command prompt or terminal in same folder
+4. Type this command:
