@@ -150,6 +150,6 @@ There is two big methods:
 ## How to Compile and Run
 
 1. Make sure JDK is installed on your system (Java 8 or higher is ok).
-2. Copy the code and save it as LibraryPortal.java
+2. Copy the code and save it as Main.java
 3. Open command prompt or terminal in same folder.
 4. Type this command to compile:
